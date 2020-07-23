@@ -53,12 +53,12 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('app', ['hiddenFun']),
+    ...mapMutations('app', ['hiddenFun', 'setTime']),
     confirm() {
       var timeStamp = parseInt(Date.parse(this.currentDate)) / 1000
       var date = new Date(timeStamp * 1000)
-      this.timeStr = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-      // console.log(this.timeStr)
+      this.timeStr = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日'
+      this.setTime(this.timeStr)
       this.hiddenFun()
     },
     cancel() {

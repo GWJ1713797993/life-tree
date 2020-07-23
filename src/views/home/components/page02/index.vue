@@ -6,6 +6,7 @@
         <div class="form__item-text">1、请输入您的名字</div>
         <div class="form__item-input">
           <van-field
+            v-model="useName"
             name="用户名"
           />
         </div>
@@ -13,7 +14,7 @@
       <div class="form__item">
         <div class="form__item-text">2、请选择您的生日日期</div>
         <div class="form__item-input">
-          <van-cell is-link @click="showPopup">111</van-cell>
+          <van-cell is-link @click="showPopup">{{time || 'xx年xx月xx日' }}</van-cell>
         </div>
       </div>
     </van-form>
@@ -27,34 +28,38 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import layer from 'layer-mobile'
 export default {
   data() {
     return {
-      minDate: new Date(2020, 0, 1),
-      maxDate: new Date(2025, 10, 1),
-      currentDate: new Date(),
-      value: '',
-      showCalendar: false,
-      show: false
+      useName: ''
     }
   },
+  computed: {
+    ...mapState('app', ['time'])
+  },
   methods: {
-    ...mapMutations('app', ['showFun']),
+    ...mapMutations('app', ['showFun', 'setName']),
     showPopup() {
       this.showFun()
     },
     submitFun() {
-      layer.open({
-        content: 'hello layer',
-        skin: 'msg',
-        time: 2 // 2秒后自动关闭
-      })
+      if (this.useName.length === 0 || this.time.length === 0) {
+        layer.open({
+          content: '请填写信息！',
+          skin: 'msg',
+          time: 2 // 2秒后自动关闭
+        })
+        return false
+      }
       this.$router.replace({
-        name: 'happen'
+        name: 'Result'
       })
     }
+  },
+  updated() {
+    this.setName(this.useName)
   }
 }
 </script>
@@ -130,7 +135,7 @@ export default {
       height: .3rem;
     }
     /deep/ .van-cell--clickable .van-cell__value{
-      color: transparent;
+      // color: transparent;
     }
     /deep/ .van-icon{
       display: none;

@@ -1,7 +1,9 @@
 export default {
   namespaced: true,
   state: {
-    show: false
+    show: false,
+    useName: '',
+    time: ''
   },
   getters: {},
   mutations: {
@@ -10,6 +12,12 @@ export default {
     },
     hiddenFun(state) {
       state.show = false
+    },
+    setName(state, value) {
+      state.useName = value
+    },
+    setTime(state, value) {
+      state.time = value
     }
   },
   actions: {}

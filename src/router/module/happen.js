@@ -1,7 +1,7 @@
 export default [
   {
     path: '/happen',
-    name: 'happen',
+    name: 'Happen',
     component: () => import('@/views/happen')
   }
 ]
