@@ -3,9 +3,17 @@
     <img class="logo" src="@img/logo.png" alt="">
     <img class="page__text" src="@img/home/text.png" alt="">
     <img class="page__tree" src="@img/home/tree.png" alt="">
-    <img class="page__green ab" src="@img/home/green.png" alt="">
-    <img class="page__yellow ab" src="@img/yellow.png" alt="">
-    <img class="page__white ab" src="@img/white.png" alt="">
+    <v-animation  class="page__green ab" name="pulse" :infinite=true>
+      <img class="page__green_img" src="@img/home/green.png" alt="">
+    </v-animation>
+    <v-animation  class="page__yellow ab" name="pulse" :infinite=true>
+      <img class="page__yellow_img" src="@img/yellow.png" alt="">
+    </v-animation>
+    <v-animation  class="page__white ab" name="pulse" :infinite=true>
+      <img class="page__white_img" src="@img/white.png" alt="">
+    </v-animation>
+    <!-- <img class="page__yellow ab" src="@img/yellow.png" alt="">
+    <img class="page__white ab" src="@img/white.png" alt=""> -->
     <img class="page__up" src="@img/home/next-icon.png" alt="">
   </div>
 </template>
@@ -14,7 +22,11 @@
 export default {
   data() {
     return {
-      // key: value
+      animationName: [{
+        name: 'bounce',
+        duration: 3,
+        infinite: true
+      }]
     }
   }
 }
@@ -36,22 +48,30 @@ export default {
     transform: translateX(-50%);
   }
   &__green{
-    width: 100%;
     top: 9.92rem;
+    &_img{
+      width: 100%;
+    }
   }
   &__yellow{
     width: 100%;
     top: 10.04rem;
+    &_img{
+      width: 100%;
+    }
   }
   &__white{
     width: 100%;
     top: 10.46rem;
+    &_img{
+      width: 100%;
+    }
   }
   &__up{
     width: 0.26rem;
     height: 0.12rem;
     position: fixed;
-    top: 11.28rem;
+    bottom: .4rem;
     left: 50%;
     transform: translateX(-100%);
     z-index: 9;
@@ -67,5 +87,8 @@ export default {
     transform: translateY(-.3rem);
     opacity: 1;
   }
+}
+.box{
+  margin: 30px auto;
 }
 </style>

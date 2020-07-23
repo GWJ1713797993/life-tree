@@ -13,6 +13,7 @@
     "html2canvas": "^1.0.0-rc.5",
     "layer-mobile": "^2.0.1",
     "swiper": "^6.0.4",
+    "v-animation": "^0.2.3",
     "vant": "^2.9.3",
     "vconsole": "^3.3.4",
     "vue": "^2.6.11",

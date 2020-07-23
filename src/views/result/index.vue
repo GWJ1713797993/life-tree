@@ -1,25 +1,25 @@
 <template>
-  <div class="page" id="capture">
-    <img class="logo" src="@img/logo.png" alt="">
-    <div class="page__name-box">
-      <p class="page__name-p">{{ useName + "君"}}</p>
-      <p class="page__name-p">你的专属<span class="page__name_text">本命树</span></p>
-    </div>
-    <img class="page__img" :src="url" alt="">
-    <img class="page__code page__img" src="@img/flower/code.png" alt="">
+  <div style="position:relative;">
     <img class="page__canvas" :src="src" alt="">
+    <div class="page" id="capture">
+      <img class="logo" src="@img/logo.png" alt="">
+      <div class="page__name-box">
+        <p class="page__name-p">{{ useName + "君"}}</p>
+        <p class="page__name-p">你的专属<span class="page__name_text">本命树</span></p>
+      </div>
+      <img class="page__img" :src="url" alt="">
+      <!-- <img class="page__code page__img" v-show="false" src="@img/flower/code.png" alt=""> -->
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import html2canvas from 'html2canvas'
-import VConsole from 'vconsole'
-// import vConsole from '@/assets/js/vconsole.js'
+// import VConsole from 'vconsole'
 export default {
   data() {
     return {
-      // key: value
       src: '',
       isShow: true
     }
@@ -38,8 +38,8 @@ export default {
     window.addEventListener('load', e => this.refreshFun(e))
   },
   mounted() {
-    const vconsole = new VConsole()
-    console.log(vconsole)
+    // const vconsole = new VConsole()
+    // console.log(vconsole)
     html2canvas(document.querySelector('#capture')).then(canvas => {
       // document.body.appendChild(canvas)
       // 导出为base64
@@ -86,9 +86,11 @@ export default {
   }
   &__canvas{
     width: 100%;
+    height: 100%;
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 9999;
   }
 }
 </style>
