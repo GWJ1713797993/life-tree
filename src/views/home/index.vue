@@ -8,7 +8,7 @@
         <page02></page02>
       </swiper-slide>
     </swiper>
-    <van-popup :value="show" position="bottom" :style="{ height: '40%' }">
+    <van-popup :value="show" position="bottom" :style="{ height: '40%' }" @click-overlay="cancel">
       <van-datetime-picker
         v-model="currentDate"
         type="date"

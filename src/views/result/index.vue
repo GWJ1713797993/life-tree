@@ -7,16 +7,21 @@
     </div>
     <img class="page__img" :src="url" alt="">
     <img class="page__code page__img" src="@img/flower/code.png" alt="">
+    <img class="page__canvas" :src="src" alt="">
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-// import html2canvas from 'html2canvas'
+import html2canvas from 'html2canvas'
+import VConsole from 'vconsole'
+// import vConsole from '@/assets/js/vconsole.js'
 export default {
   data() {
     return {
       // key: value
+      src: '',
+      isShow: true
     }
   },
   computed: {
@@ -29,12 +34,16 @@ export default {
     }
   },
   created() {
-    console.log(this.useName, this.time)
+    // console.log(this.useName, this.time)
     window.addEventListener('load', e => this.refreshFun(e))
   },
   mounted() {
+    const vconsole = new VConsole()
+    console.log(vconsole)
     html2canvas(document.querySelector('#capture')).then(canvas => {
-      document.body.appendChild(canvas)
+      // document.body.appendChild(canvas)
+      // 导出为base64
+      this.src = canvas.toDataURL('images/png')
     })
   },
   methods: {
@@ -74,6 +83,12 @@ export default {
     margin-top: .2rem;
     width: 100%;
     display: block;
+  }
+  &__canvas{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
   }
 }
 </style>
