@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <div class="mask" v-if="load">
+      <img class="mask__load_img" src="@img/load.gif" alt="">
+    </div>
     <swiper ref="mySwiper" :options="swiperOptions"  style="height: 100%">
       <swiper-slide>
         <page01></page01>
@@ -47,7 +50,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('app', ['show']),
+    ...mapState('app', ['show', 'load']),
     swiper() {
       return this.$refs.mySwiper.$swiper
     }
@@ -72,8 +75,25 @@ export default {
 <style lang="scss" scoped>
 .home{
   height: 100vh;
+  position: relative1;
 }
 .swiper-wrapper{
   height: 100%;
+}
+.mask{
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  &__load_img{
+    width: 1.6rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-70%);
+  }
 }
 </style>

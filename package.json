@@ -10,7 +10,7 @@
   "dependencies": {
     "core-js": "^3.6.4",
     "h5-rem": "^1.0.2",
-    "html2canvas": "^1.0.0-rc.5",
+    "html2canvas": "1.0.0-rc.4",
     "layer-mobile": "^2.0.1",
     "swiper": "^6.0.4",
     "v-animation": "^0.2.3",

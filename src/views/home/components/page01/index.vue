@@ -12,8 +12,6 @@
     <v-animation  class="page__white ab" name="pulse" :infinite=true>
       <img class="page__white_img" src="@img/white.png" alt="">
     </v-animation>
-    <!-- <img class="page__yellow ab" src="@img/yellow.png" alt="">
-    <img class="page__white ab" src="@img/white.png" alt=""> -->
     <img class="page__up" src="@img/home/next-icon.png" alt="">
   </div>
 </template>

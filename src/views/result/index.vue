@@ -22,7 +22,6 @@
 <script>
 import { mapState } from 'vuex'
 import html2canvas from 'html2canvas'
-import VConsole from 'vconsole'
 export default {
   data() {
     return {
@@ -44,12 +43,11 @@ export default {
     window.addEventListener('load', e => this.refreshFun(e))
   },
   mounted() {
-    const vconsole = new VConsole()
-    console.log(vconsole)
     html2canvas(document.querySelector('#capture')).then(canvas => {
       // document.body.appendChild(canvas)
       // 导出为base64
       this.src = canvas.toDataURL('images/png')
+      console.log('xxx')
     })
   },
   methods: {
@@ -61,6 +59,14 @@ export default {
     toHappen() {
       this.$router.replace({
         name: 'Happen'
+      })
+    },
+    saveImg() {
+      var shareContent = document.getElementById('section')
+      html2canvas(shareContent, {
+        onrendered: function(canvas) {
+          this.url = canvas.toDataURL()
+        }
       })
     }
   },
@@ -110,7 +116,6 @@ export default {
   position: absolute;
   left: 0;
   top: 10.2rem;
-  // z-index: 1;
   &__img{
     width: 100%;
   }
@@ -125,6 +130,7 @@ export default {
     position: absolute;
     top: 50%;
     right: 0;
+    z-index: 99999;
   }
 }
 </style>

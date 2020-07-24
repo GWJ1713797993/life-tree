@@ -3,7 +3,8 @@ export default {
   state: {
     show: false,
     useName: '',
-    time: ''
+    time: '',
+    load: false
   },
   getters: {},
   mutations: {
@@ -18,6 +19,9 @@ export default {
     },
     setTime(state, value) {
       state.time = value
+    },
+    loadShowFun(state) {
+      state.load = true
     }
   },
   actions: {}

@@ -46,7 +46,7 @@ export default {
     ...mapState('app', ['time'])
   },
   methods: {
-    ...mapMutations('app', ['showFun', 'setName']),
+    ...mapMutations('app', ['showFun', 'setName', 'loadShowFun']),
     showPopup() {
       this.showFun()
     },
@@ -59,9 +59,12 @@ export default {
         })
         return false
       }
-      this.$router.replace({
-        name: 'Result'
-      })
+      this.loadShowFun()
+      setTimeout(() => {
+        this.$router.replace({
+          name: 'Result'
+        })
+      }, 3000)
     }
   },
   updated() {
@@ -157,4 +160,5 @@ export default {
     }
   }
 }
+
 </style>

@@ -4,11 +4,17 @@
     <img class="page__title page__img" src="@img/happen/img_02.png" alt="">
     <img class="page__text page__img" src="@img/happen/img_04.png" alt="">
     <div class="page__line"></div>
-    <img class="page__project page__img" src="@img/happen/img_06.png" alt="">
+    <a class="page__a" href="https://wkan.cn/fl/yian/gz">
+      <img class="page__project page__img" src="@img/happen/img_06.png" alt="">
+    </a>
     <div class="page__line"></div>
-    <img class="page__project page__img" src="@img/happen/img_08.png" alt="">
+    <a class="page__a" href="https://wkan.cn/fl/yian/hz">
+      <img class="page__project page__img" src="@img/happen/img_08.png" alt="">
+    </a>
     <div class="page__line"></div>
-    <img class="page__project page__img" src="@img/happen/img_10.png" alt="">
+    <a class="page__a" href="https://wkan.cn/fl/yian/tj">
+      <img class="page__project page__img" src="@img/happen/img_10.png" alt="">
+    </a>
   </div>
 </template>
 
@@ -40,6 +46,9 @@ export default {
     height: 0.02rem;
     background-color: #cfa36d;
     margin: .14rem auto;
+  }
+  &__a{
+    display: block;
   }
 }
 </style>
