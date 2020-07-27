@@ -11,4 +11,6 @@ const router = new VueRouter({
   routes
 })
 
+document.title = '生命树'
+
 export default router

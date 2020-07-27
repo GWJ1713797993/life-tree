@@ -14,7 +14,7 @@
       <div class="form__item">
         <div class="form__item-text">2、请选择您的生日日期</div>
         <div class="form__item-input">
-          <van-cell is-link @click="showPopup">{{time || 'xx年xx月xx日' }}</van-cell>
+          <van-cell is-link @click="showPopup">{{ time }}</van-cell>
         </div>
       </div>
     </van-form>

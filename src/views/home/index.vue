@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <div class="mask" v-if="load">
-      <img class="mask__load_img" src="@img/load.gif" alt="">
+      <div class="mask__pop">
+        <van-loading size="24px" vertical>生成中...</van-loading>
+      </div>
     </div>
     <swiper ref="mySwiper" :options="swiperOptions"  style="height: 100%">
       <swiper-slide>
@@ -83,17 +85,27 @@ export default {
 .mask{
   width: 100%;
   height: 100vh;
-  background: #fff;
+  background: url('~@img/home/bg.png') no-repeat;
+  background-size: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9;
-  &__load_img{
-    width: 1.6rem;
+  z-index: 9999999;
+  // &__load_img{
+  //   width: 1.6rem;
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%,-70%);
+  // }
+  &__pop{
+    width: 2.5rem;
+    padding: .3rem;
+    background: rgba($color: #000000, $alpha: .6);
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-70%);
+    transform: translate(-50%, -50%);
   }
 }
 </style>

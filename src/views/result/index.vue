@@ -32,14 +32,17 @@ export default {
   computed: {
     ...mapState('app', ['useName', 'time']),
     monthValue() {
-      return this.time.slice(this.time.indexOf('年') + 1, this.time.indexOf('年') + 2)
+      if (this.time.length > 0) {
+        return this.time.slice(this.time.indexOf('年') + 1, this.time.indexOf('年') + 2)
+      } else {
+        return 1
+      }
     },
     url() {
       return require(`@img/flower/${this.monthValue}.png`)
     }
   },
   created() {
-    // console.log(this.useName, this.time, 'xxxx')
     window.addEventListener('load', e => this.refreshFun(e))
   },
   mounted() {
@@ -47,7 +50,6 @@ export default {
       // document.body.appendChild(canvas)
       // 导出为base64
       this.src = canvas.toDataURL('images/png')
-      console.log('xxx')
     })
   },
   methods: {
