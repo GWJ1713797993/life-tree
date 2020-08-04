@@ -1,83 +1,52 @@
+const Storage = {}
+
 /**
- * 一个基于localStorage的类
- * 在localStorage基础上增加了过期时间
+ * 作用：获取storage
+ * @param name  需要获取的key
+ * @returns {any}  返回请求的值
  */
+Storage.get = function(name) {
+  return JSON.parse(localStorage.getItem(name))
+}
 
-class Storage {
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new Storage()
-    }
-    return this.instance
+/**
+ * 作用：设置storage
+ * @param name  需要设置的key
+ * @param val   需要设置的值
+ */
+Storage.set = function(name, val) {
+  localStorage.setItem(name, JSON.stringify(val))
+}
+
+/**
+ * 作用：增加storage
+ * @param name  需要往哪个项新增
+ * @param addVal  需要新增的数组对象
+ */
+Storage.put = function(name, addKey, addVal) {
+  if (!Storage.get(name)) {
+    Storage.set(name, { [addKey]: addVal })
+    return
   }
 
-  /**
-   * set 方法，设置
-   * @param key String 键
-   * @param value 值
-   * @param expired 有效期
-   */
-  set(key, value, expired) {
-    const data = {
-      value,
-      writeTime: Number(new Date()), // 写入时间，单位：ms
-      expired
-    }
-    // 值是数组，不能直接存储，需要转换 JSON.stringify
-    localStorage.setItem(key, JSON.stringify(data))
-  }
+  const newVal = Storage.get(name)
+  newVal[addKey] = addVal
+  Storage.set(name, newVal)
+}
 
-  /**
-   * 获取
-   * @param key 键
-   */
-  get(key) {
-    const dataJSON = localStorage.getItem(key)
-    // 当目标不存在时直接结束
-    if (this.isNotExist(dataJSON)) {
-      return null
-    }
-    const data = JSON.parse(dataJSON)
-    // 当数据的存在周期未定义时，它被认为是永久的
-    if (this.isNotExist(data.expired)) {
-      return data.value
-    }
-    // 数据声明期结束时释放数据
-    if (this.isOutPeriod(data)) {
-      this.del(key)
-      return null
-    }
-    return data.value
-  }
+/**
+ * 作用：删除storage项
+ * @param name  需要删除的Key
+ */
+Storage.remove = function(name) {
+  localStorage.removeItem(name)
+}
 
-  /**
-   * del 方法，删除
-   * @param key 键
-   */
-  del(key) {
-    localStorage.removeItem(key)
-  }
-
-  /**
-   * 判断目标是否存在
-   * @param value
-   * @returns {boolean}
-   */
-  isNotExist(value) {
-    return value === null || typeof (value) === 'undefined'
-  }
-
-  /**
-   * isOutPeriod 方法，判断 value 值是否过期
-   * @param value 值
-   */
-  isOutPeriod(value) {
-    if (!value.value) {
-      return true
-    }
-    const readTime = Number(new Date())
-    return (readTime - value.writeTime) > value.expired
-  }
+/**
+ * 作用：移除所有
+ */
+Storage.clear = function() {
+  localStorage.clear()
 }
 
 export default Storage

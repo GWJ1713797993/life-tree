@@ -1,3 +1,3 @@
-import storage from '@/libs/Storage'
+// import storage from '@/libs/Storage'
 
-export default storage.getInstance()
+// export default storage.getInstance()
